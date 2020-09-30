@@ -36,6 +36,8 @@
       "no-use-before-define": "off",
       "@typescript-eslint/ban-types": "off",
       "react/jsx-props-no-spreading": "off",
+      "no-unused-expressions": "off",
+      "arrow-parens":"off",
 
       "import/extensions": [
         "error",
