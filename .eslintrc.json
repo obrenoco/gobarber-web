@@ -36,7 +36,12 @@
       "no-use-before-define": "off",
       "@typescript-eslint/ban-types": "off",
       "react/jsx-props-no-spreading": "off",
+      "react/prop-types": "off",
+      "operator-linebreak": "off",
       "no-unused-expressions": "off",
+      "implicit-arrow-linebreak": "off",
+      "object-curly-newline":"off",
+
       "arrow-parens":"off",
 
       "import/extensions": [

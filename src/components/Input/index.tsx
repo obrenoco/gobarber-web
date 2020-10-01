@@ -1,9 +1,13 @@
-import React, { InputHTMLAttributes, useEffect, useRef, useState, useCallback } from 'react';
+import React, {
+  InputHTMLAttributes,
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+} from 'react';
 import { IconBaseProps } from 'react-icons/lib';
 import { FiAlertCircle } from 'react-icons/fi';
-import {useField} from '@unform/core'
-
-import Tooltip from '../ToolTip';
+import { useField } from '@unform/core';
 
 import { Container, Error } from './styles';
 
@@ -13,21 +17,21 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
-  const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const [isFocused, setIsFocused] = useState(false);
-  const [isFilled, setIsFilled] = useState(false)
+  const [isFilled, setIsFilled] = useState(false);
 
   const { defaultValue, fieldName, registerField, error } = useField(name);
 
   const handleInputFocus = useCallback(() => {
-    setIsFocused(true)
+    setIsFocused(true);
   }, []);
 
   const handleInputBlur = useCallback(() => {
     setIsFocused(false);
 
-    setIsFilled(!!inputRef.current?.value)
+    setIsFilled(!!inputRef.current?.value);
   }, []);
 
   useEffect(() => {
@@ -36,21 +40,25 @@ const Input: React.FC<InputProps> = ({ name, icon: Icon, ...rest }) => {
       ref: inputRef.current,
       path: 'value',
     });
-  }, [fieldName, registerField])
+  }, [fieldName, registerField]);
 
   return (
     <Container isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
-    { Icon && <Icon size={20} />}
-    <input
-      onFocus={handleInputFocus}
-      onBlur={handleInputBlur}
-      defaultValue={defaultValue}
-      ref={inputRef}
-      {...rest}
-    />
-    {error && (<Error title={error}><FiAlertCircle color="#c53030" size={20}/></Error>)}
-  </Container>
-  )
+      {Icon && <Icon size={20} />}
+      <input
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
+        defaultValue={defaultValue}
+        ref={inputRef}
+        {...rest}
+      />
+      {error && (
+        <Error title={error}>
+          <FiAlertCircle color="#c53030" size={20} />
+        </Error>
+      )}
+    </Container>
+  );
 };
 
 export default Input;
